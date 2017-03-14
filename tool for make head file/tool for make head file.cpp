@@ -38,11 +38,11 @@ int _tmain(int argc, _TCHAR* argv[])
 		+ "\n #endif";
 
 	outfile_h.close();
-	string include = "#include";
-	string yubianyi = "stdafx";
+	string include = "#include";//
+	//string yubianyi = "stdafx";
 	ofstream outfile_cpp(file_name + ".cpp");
 	outfile_cpp <<
-		include + '"' + yubianyi + ".h" + '"' + '\n'
+		include + '"' + "stdafx" + ".h" + '"' + '\n'
 		+ include + '"' + file_name + ".h" + '"' + '\n'
 		+ '\n'
 		+ "using namespace " + name_space + ";"
