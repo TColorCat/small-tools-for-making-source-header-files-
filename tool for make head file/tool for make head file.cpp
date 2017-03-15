@@ -29,9 +29,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	outfile_h << "#ifndef " + file_name + "_H_ \n"
 		+ "#define " + file_name + "_H_ \n \n"
-		+ "namespace " + name_space + "\n { "
-		+
-
+		+ "namespace " + name_space 
+		+ "\n { "
 		+"\n }"
 
 
@@ -41,13 +40,39 @@ int _tmain(int argc, _TCHAR* argv[])
 	string include = "#include";//
 	//string yubianyi = "stdafx";
 	ofstream outfile_cpp(file_name + ".cpp");
-	outfile_cpp <<
-		include + '"' + "stdafx" + ".h" + '"' + '\n'
-		+ include + '"' + file_name + ".h" + '"' + '\n'
-		+ '\n'
-		+ "using namespace " + name_space + ";"
-		+ '\n'
-		;
+	string output_normal;
+	
+	cout << "the type: 0:normal    1:template: ";
+	int choice;
+	cin >> choice;
+
+	switch (choice)
+	{
+	case 0:
+		output_normal = include + '"' + "stdafx" + ".h" + '"' + '\n'
+			+ include + '"' + file_name + ".h" + '"' + '\n'
+			+ '\n'
+			+ "using namespace " + name_space + ";"
+			+ '\n'
+			;
+		break;
+	case 1:
+		output_normal = include + '"' + "stdafx" + ".h" + '"' + '\n'
+			+ include + '"' + file_name + ".h" + '"' + '\n'
+			+ '\n'
+			+ "namespace " + name_space + '\n' + "{"
+			+ '\n'
+			+ "}"
+			;
+		break;
+	default:
+		cout << "wrong" << endl;
+		break;
+	}
+	
+	outfile_cpp << output_normal;
+	
+	outfile_cpp.close();
 	return 0;
 }
 
